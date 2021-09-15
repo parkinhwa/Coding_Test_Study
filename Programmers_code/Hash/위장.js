@@ -3,7 +3,7 @@ function solution(clothes) {
     let set = {};
     for(let i = 0; i < clothes.length; i++){
         //console.log(clothes); // heargear가 2개 eyewear가 1개
-        set[clothes[i][1]] = (set[clothes[i][1]] || 1) + 1;
+        set[clothes[i][1]] = (set[clothes[i][1]] || 1) + 1; // 비어있으면 1 해당 키가 있으면 +1
         //console.log(set); // { headgear: 3, eyewear: 2 } 안쓴 경우를 포함
     }
     for(let key in set){

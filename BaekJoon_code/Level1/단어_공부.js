@@ -9,10 +9,10 @@ function solution(input) {
   let strsort = Object.entries(strset).sort(([, a], [, b]) => b - a);
   
   if(strsort.length > 1 && strsort[0][1] == strsort[1][1]){
-    console.log("?") 
+    return "?" 
   } else {
-    console.log(strsort[0][0])
+    return strsort[0][0]
   }
 
 }
-console.log(solution(input))
+solution(input)

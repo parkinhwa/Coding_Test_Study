@@ -15,4 +15,4 @@ function solution(input) {
   }
 
 }
-solution(input)
+console.log(solution(input))

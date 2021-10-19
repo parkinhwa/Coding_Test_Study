@@ -6,15 +6,14 @@ let arr = [];
 for(let w = 0; w < n; w++){
   arr.push(input.shift().split(" ").map(Number))
 }
-console.log(arr)
 let k = Number(input.shift())
 let sum = 0;
 
 // console.log(n, m, arr, k)
 for(let s = 0; s < k; s++){
   let [i, j, x, y] = input.shift().split(" ").map(Number)
-  for(let a = i-1; a <= x-1; a++){
-    for(let b = j-1; b <= y-1; b++){
+  for(let a = i-1; a < x; a++){
+    for(let b = j-1; b < y; b++){
       sum += arr[a][b]
     }
   }

@@ -1,4 +1,3 @@
-// 아 런타임 에러 왜 나지
 const input = require('fs').readFileSync('/dev/stdin').toString().split("\n");
 let array = Array.from(Array(8), ()=>Array(8).fill(0))
 let [king, stone, n] = input.shift().split(" ")
@@ -17,12 +16,12 @@ array[s_ro][s_co] = 2;
 // console.log(array[8][8])
 for(let i = 0; i < n; i++){
   let position = input.shift();
-  // console.log(position)
+  console.log(position)
   if(k_ro < 8 && k_co < 8 && s_ro < 8 && s_co < 8 && k_ro > -1 && k_co > -1 && s_ro > -1 && s_co > -1){
     if(k_co < 7 && position == "R"){
       if(array[k_ro][k_co+1] == 2){
-        if(s_co > 7){
-          break;
+        if(s_co >= 7){
+          continue;
         }
         array[k_ro][k_co+1] = 0;
         array[s_ro][s_co+1] = 2;
@@ -34,7 +33,7 @@ for(let i = 0; i < n; i++){
     } else if (0 < k_co && position == "L"){
         if(array[k_ro][k_co-1] == 2){
           if(1 > s_co){
-            break;
+            continue;
           }
           array[k_ro][k_co-1] = 0;
           array[s_ro][s_co-1] = 2;
@@ -45,20 +44,20 @@ for(let i = 0; i < n; i++){
         k_co = k_co-1;
     } else if (k_ro < 7 && position == "B"){
         if(array[k_ro+1][k_co] == 2){
-            if(s_ro > 7){
-              break;
+            if(s_ro >= 7){
+              continue;
             }
             array[k_ro+1][k_co] = 0;
             array[s_ro+1][s_co] = 2;
-            s_ro = s_ro;
+            s_ro = s_ro+1;
           }
         array[k_ro][k_co] = 0;
         array[k_ro+1][k_co] = 1;
         k_ro = k_ro+1;
-    } else if (1 < k_co && 1 < s_co && position == "T"){
-        if(array[k_ro][k_co] == 2){
+    } else if (0 < k_ro && position == "T"){
+        if(array[k_ro-1][k_co] == 2){
             if(1 > s_ro){
-              break;
+              continue;
             }
             array[k_ro-1][k_co] = 0;
             array[s_ro-1][s_co] = 2;
@@ -67,10 +66,10 @@ for(let i = 0; i < n; i++){
         array[k_ro][k_co] = 0;
         array[k_ro-1][k_co] = 1;
         k_ro = k_ro-1;
-    } else if (k_ro < 7 && 1 < k_co && position == "RT"){
+    } else if (k_ro > 0 && 7 > k_co && position == "RT"){
         if(array[k_ro-1][k_co+1] == 2){
-          if(s_ro < 1 || 7 < s_co){
-            break;
+          if(s_ro < 1 || 7 <= s_co){
+            continue;
           }
             array[k_ro-1][k_co+1] = 0;
             array[s_ro-1][s_co+1] = 2;
@@ -81,10 +80,10 @@ for(let i = 0; i < n; i++){
         array[k_ro-1][k_co+1] = 1;
         k_ro = k_ro-1;
         k_co = k_co+1;
-    } else if (1 < k_ro && 1 < k_co && position == "LT"){
+    } else if (0 < k_ro && 0 < k_co && position == "LT"){
         if(array[k_ro-1][k_co-1] == 2){
           if(1 > s_ro || 1 > s_co){
-            break;
+            continue;
           }
             array[k_ro-1][k_co-1] = 0;
             array[s_ro-1][s_co-1] = 2;
@@ -97,8 +96,8 @@ for(let i = 0; i < n; i++){
         k_co = k_co-1;
     } else if (k_ro < 7 && k_co < 7 && position == "RB"){
         if(array[k_ro+1][k_co+1] == 2){
-          if(s_co > 7 || s_ro > 7){
-            break;
+          if(s_co >= 7 || s_ro >= 7){
+            continue;
           }
             array[k_ro+1][k_co+1] = 0;
             array[s_ro+1][s_co+1] = 2;
@@ -111,8 +110,8 @@ for(let i = 0; i < n; i++){
           k_co = k_co+1;
     } else if (k_ro < 7 && k_co > 0 && position == "LB"){
         if(array[k_ro+1][k_co-1] == 2){
-          if(s_ro > 7 || s_co < 1){
-            break;
+          if(s_ro >= 7 || s_co < 1){
+            continue;
           }
             array[k_ro+1][k_co-1] = 0;
             array[s_ro+1][s_co-1] = 2;
@@ -125,6 +124,7 @@ for(let i = 0; i < n; i++){
         k_co = k_co-1;
     }
   }
+  console.log(k_ro, k_co, s_ro, s_co)
 }
 // console.log(array);
 k_ro = Number(Math.abs(k_ro-8))

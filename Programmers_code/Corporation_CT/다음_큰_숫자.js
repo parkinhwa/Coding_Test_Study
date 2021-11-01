@@ -1,3 +1,11 @@
+// 다른 사람 풀이
+// function nextBigNumber(n) {
+//     var size = n.toString(2).match(/1/g).length
+//     while(n++) {
+//         if(size === n.toString(2).match(/1/g).length) return n
+//     }
+// }
+
 function count(num){
     let cou = 0;
     for(let i = 0; i < num.length; i++){

@@ -17,7 +17,7 @@ function solution(arr){
           row2 = i;
           col2 = j;
         }
-        console.log(num, arr[i][j], row1, col1, row2, col2, answer)
+        // console.log(num, arr[i][j], row1, col1, row2, col2, answer)
         if(row1 != -1 && col1 != -1 && row2 != -1 && col2 != -1){
           answer += Math.abs(row1-row2)+Math.abs(col1-col2);
           row1 = -1;

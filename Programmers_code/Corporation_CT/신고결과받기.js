@@ -9,10 +9,13 @@ function solution(id_list, report, k) {
     let rep = [];
     let count = {};
     let result = [];
+
+    // 신고한 사람 신고당한 사람 2차원 배열
     for(let i = 0; i < report.length; i++){
       let content = report[i].split(" ");
       rep.push([content[0], content[1]]);
     }
+    
     // 2차원 배열 key object로 변환
     const arrayToObject = (array) => {
     // array 에 대해 reduce 메서드를 적용한다.
@@ -35,6 +38,8 @@ function solution(id_list, report, k) {
     };
     rep = arrayToObject(rep);
     //console.log(rep);
+
+    // 신고당한 사람 key로 가져와서 몇번 당했는지 카운트, k번 신고당한 사람 answer에 추가
     let keys = Object.keys(rep);
     for(let j = 0; j < keys.length; j++){
       rep[keys[j]].forEach((x) => {
@@ -44,6 +49,8 @@ function solution(id_list, report, k) {
           }
         }) 
       }
+    
+    // answer에 있는 사람 신고했는지 카운트
     id_list.forEach((x) => {
       let n = 0;
       for(let m = 0; m < answer.length; m++){

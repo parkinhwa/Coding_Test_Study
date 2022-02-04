@@ -1,19 +1,18 @@
 let n = 15;
 
 function solution(n) {
-    var answer = 0;
+    var answer = 1;
     for(let i = 0; i < parseInt(n/2); i++){
       let sum = 0;
-      let num = 1+i;
+      let num = i;
       while(sum <= n){
         if(sum === n) {
           answer++;
         }
-        sum += num;
-        num++;
+        sum += num++;
       }
     }
-    return answer+1;
+    return answer;
 }
 
 console.log(solution(n));

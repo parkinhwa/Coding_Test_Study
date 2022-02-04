@@ -1,10 +1,11 @@
-let id_list = ["con", "ryan"]
-let report = ["ryan con", "ryan con", "ryan con", "ryan con"]
-let k = 3
-
+// let id_list = ["con", "ryan"]
+// let report = ["ryan con", "ryan con", "ryan con", "ryan con"]
+// let k = 3
+let id_list = ["muzi", "frodo", "apeach", "neo"]
+let report = ["muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"]
+let k = 2
 function solution(id_list, report, k) {
     var answer = [];
-    let dec = [];
     let rep = [];
     let count = {};
     let result = [];
@@ -35,12 +36,14 @@ function solution(id_list, report, k) {
     rep = arrayToObject(rep);
     //console.log(rep);
     let keys = Object.keys(rep);
-    rep[keys].forEach((x) => {
-      count[x] = (count[x] || 0)+1;
-      if(count[x] === k){
-        answer.push(x);
-      } 
-    })
+    for(let j = 0; j < keys.length; j++){
+      rep[keys[j]].forEach((x) => {
+          count[x] = (count[x] || 0)+1;
+          if(count[x] === k){
+            answer.push(x);
+          }
+        }) 
+      }
     id_list.forEach((x) => {
       let n = 0;
       for(let m = 0; m < answer.length; m++){
@@ -54,7 +57,7 @@ function solution(id_list, report, k) {
       }
       result.push(n);
     })
-    // console.log(answer, count)
+    //console.log(answer, count)
     return result;
 }
 console.log(solution(id_list, report, k));

@@ -1,20 +1,16 @@
 let [input] = require('fs').readFileSync('/dev/stdin').toString().split(" ").map(Number);
 
-let answer = 1;
-while(input > 2){
-  if(input % 3 === 1){
-    input = input - 1;
-  } else if(input % 2 === 1){
-    input = input - 1;
-  } 
-  console.log(input);
-  if(input % 3 === 0){
-    input = input/3;
-  } else if(input % 2 === 0){
-    input = input/2;
+let DP = new Array(input+1).fill(0);
+
+for(let i = 2; i < input+1; i++){
+  DP[i] = DP[i-1]+1;
+  if(i % 2 === 0){
+    DP[i] = Math.min(DP[i], DP[i/2]+1);
   }
-  console.log(input);
-  answer++;
+  if(i % 3 === 0){
+    DP[i] = Math.min(DP[i], DP[i/3]+1);
+  }
 }
 
-console.log(answer);
+console.log(DP[input])
+

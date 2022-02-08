@@ -5,14 +5,16 @@ let site = [];
 for(let i = 0; i < N; i++){
   site.push(input[i].split(" "));
 }
-// console.log(N, M, site)
+const arrayToObject = (array) =>
+array.reduce(
+  (acc, row) => ((acc[row[0]] = [...(acc[row[0]] || []), row[1]]), acc),
+  {}
+);
+let siteob = {};
+siteob = arrayToObject(site);
+console.log(siteob)
 let answer = "";
 for(let j = 0; j < M; j++){
-  for(let k = 0; k < N; k++){
-    // console.log(input[N+j], site[k][0])
-    if(input[j+N] == site[k][0]){
-      answer += site[k][1]+"\n";
-    }
-  }
+  answer += siteob[input[j+N]]+"\n";
 }
 console.log(answer);

@@ -3,7 +3,6 @@ let input = require('fs').readFileSync('/dev/stdin').toString().split("\n");
 const arrayToObject = (array) =>
 array.reduce(
   (acc, row) => ((acc[row[1]] = [...(acc[row[1]] || []), row[0]]), acc),
-  
   {}
 );
 let k = Number(input.shift());

@@ -4,7 +4,7 @@
 // "#"];
 let input = require('fs').readFileSync('/dev/stdin').toString().split("\n");
 
-let gather = /[aeiou]/i;
+let vowel = /[aeiou]/i;
 
 for(let i = 0; i < input.length; i++){
   let count = 0;
@@ -12,7 +12,7 @@ for(let i = 0; i < input.length; i++){
     break;
   } else {
     for(let j = 0; j < input[i].length; j++){
-      if(input[i][j].match(gather)){
+      if(input[i][j].match(vowel)){
         count++;
       }
     }

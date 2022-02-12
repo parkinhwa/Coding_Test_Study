@@ -1,10 +1,24 @@
 // Set길이는 size
-let arr = [[1, 2], [2, 3], [1, 5], [5, 2], [5, 6], [4, 7]]
-let N = 7;
-let M = 6;
+let input = require('fs').readFileSync('/dev/stdin').toString().split("\n");
+
+let N = Number(input.shift());
+let M = Number(input.shift());
+
+let arr = [];
+for(let i = 0; i < M; i++){
+  arr.push(input[i].split(" ").map(Number));
+}
+
+let graph = Array.from(Array(N+1), ()=>Array(N+1).fill(0)); 
+let visited = [];
+for(let [a, b] of arr){
+  graph[a][b]=1;
+  graph[b][a]=1;
+}
+
 function solution(n, graph) { 
   //방문노드 초기화 
-  visited = new Array(n + 1).fill(false); 
+  visited = new Array(N + 1).fill(false); 
   let result = 0; 
   //노드 1로 dfs시작 
   result = dfs(n, 1); 
@@ -21,7 +35,8 @@ function dfs(n, start) {
   while (stack.length !== 0) { 
     let tmp = stack.pop(); 
     //연결된 인접노드 가져옴 
-    for (let i = 1; i <= n; i++) { 
+    for (let i = 1; i <= N; i++) { 
+      // console.log(tmp, i);
       //현재 노드와 연결된것이 있고 그 연결노드가 아직 미방문이면 
       if (graph[tmp][i] === 1 && visited[i] === false) { 
         stack.push(i); //인접노드 삽입 
@@ -29,9 +44,12 @@ function dfs(n, start) {
         visited[i] = true; //인접노드 방문처리 
         } 
       } 
-    } 
+    }
   return cnt; 
 }
+
+solution(N, graph);
+
 
 // let input = require('fs').readFileSync('/dev/stdin').toString().split("\n");
 

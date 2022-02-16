@@ -1,5 +1,4 @@
-let input = require('fs').readFileSync("/dev/stdin").toString().split("\n");
-input.pop();
+let input = require('fs').readFileSync("/dev/stdin").toString().trim().split("\n");
 // let input = ['5', '2 4 -10 4 -9'];
 let n = Number(input.shift());
 let arr = input[0].split(" ").map(Number);

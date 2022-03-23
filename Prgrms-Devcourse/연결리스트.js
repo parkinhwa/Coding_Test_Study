@@ -1,4 +1,5 @@
 // 연결리스트
+
 // node 생성
 class Node {
   constructor(value) {
@@ -60,9 +61,11 @@ class SinglyLinkedList {
   // 삭제
   remove(value) {
     let preNode = this.head; // 이전노드 head로 설정
-    
-    // value를 찾을때까지 다음요소가 넘어가며 preNode가 변경
-    while(preNode.next.value !== value) {
+    if(preNode.value === value){ // value가 맨앞에 있는 요소일때 예외처리
+      this.head = preNode.next;
+    } else {
+        // value를 찾을때까지 다음요소가 넘어가며 preNode가 변경
+        while(preNode.next.value !== value) {
         // console.log(preNode.next.next)
         // value 값이 존재하지 않을 때 예외처리
         if(preNode.next.next === null){
@@ -70,6 +73,8 @@ class SinglyLinkedList {
         } 
         preNode = preNode.next;
       }
+    }
+    
     // preNode를 찾으면 이전노드의 다음이 다음의 다음을 가르키도록 변경
     if(preNode.next !== null){
       preNode.next = preNode.next.next;
@@ -156,18 +161,25 @@ class DoublyLinkedList {
   // 삭제
   remove(value) {
     let preNode = this.head; // 이전노드 head로 설정
-    // value를 찾을때까지 다음요소가 넘어가며 preNode가 변경
-    while(preNode.next.value !== value) {
-        // console.log(preNode.next.next)
-        // value 값이 존재하지 않을 때 예외처리
-        if(preNode.next.next === null){
-          return "none";
-        } 
-        preNode = preNode.next;
-      }
+    if(preNode.value === value){ // value가 맨앞에 있는 요소이면
+      this.head = preNode.next; // 현재head를 맨앞요소 뒤에껄로 바꿈
+    } else {
+      // value를 찾을때까지 다음요소가 넘어가며 preNode가 변경
+      while(preNode.next.value !== value) {
+          // console.log(preNode.next.next)
+          // value 값이 존재하지 않을 때 예외처리
+          if(preNode.next.next === null){
+            return "none";
+          } 
+          preNode = preNode.next;
+        }      
+    }
+    // preNode를 찾으면 이전노드의 이전이 이전의 이전을 가르키도록 변경
+    if(preNode.prev !== null){
+      preNode.prev = preNode.prev.prev;
+    }
     // preNode를 찾으면 이전노드의 다음이 다음의 다음을 가르키도록 변경
     if(preNode.next !== null){
-      preNode.prev = preNode.prev.prev;
       preNode.next = preNode.next.next;
     }
     this.count -= 1;
@@ -245,9 +257,11 @@ class CricularLinkedList {
   // 삭제
   remove(value) {
     let preNode = this.head; // 이전노드 head로 설정
-    
-    // value를 찾을때까지 다음요소가 넘어가며 preNode가 변경
-    while(preNode.next.value !== value) {
+    if(preNode.value === value){ // value가 맨앞에 있는 요소일때 예외처리
+      this.head = preNode.next;
+    } else {
+        // value를 찾을때까지 다음요소가 넘어가며 preNode가 변경
+        while(preNode.next.value !== value) {
         // console.log(preNode.next.next)
         // value 값이 존재하지 않을 때 예외처리
         if(preNode.next.next === null){
@@ -255,6 +269,8 @@ class CricularLinkedList {
         } 
         preNode = preNode.next;
       }
+    }
+    
     // preNode를 찾으면 이전노드의 다음이 다음의 다음을 가르키도록 변경
     if(preNode.next !== null){
       preNode.next = preNode.next.next;
@@ -283,14 +299,14 @@ class CricularLinkedList {
 }
 
 const linkedList = new SinglyLinkedList();
-// linkedList.append(1);
-// linkedList.append(2);
-// linkedList.append(3);
-// linkedList.append(5);
+linkedList.append(1);
+linkedList.append(2);
+linkedList.append(3);
+linkedList.append(5);
 // linkedList.display();
 // console.log(linkedList.find(8));
 // console.log(linkedList.remove(8));
-// linkedList.remove(5);
+// linkedList.remove(1);
 // linkedList.remove(8);
 // linkedList.display();
 // linkedList.insert(2, 10);
@@ -303,7 +319,7 @@ doublylinkedList.append(2);
 doublylinkedList.append(3);
 doublylinkedList.append(5);
 // doublylinkedList.insert(2, 10);
-// doublylinkedList.remove(5);
+console.log(doublylinkedList.remove(5));
 // doublylinkedList.remove(8);
 doublylinkedList.display();
 

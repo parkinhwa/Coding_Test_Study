@@ -63,6 +63,7 @@ array.push(heap.pop());
 array.push(heap.pop());
 // console.log(array);
 
+//
 class MinHeap {
   constructor() {
     this.heap = [null]; // 0번 인덱스 null

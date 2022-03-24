@@ -128,4 +128,8 @@ array2.push(heap2.pop());
 array2.push(heap2.pop());
 array2.push(heap2.pop());
 array2.push(heap2.pop());
+<<<<<<< HEAD
 console.log(array2);
+=======
+console.log(array2);
+>>>>>>> 0758c257be0680183db7f0584d8016de6037ecf3

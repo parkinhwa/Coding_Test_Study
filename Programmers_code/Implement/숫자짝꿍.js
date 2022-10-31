@@ -1,22 +1,22 @@
 function solution(X, Y) {
     let answer = '';
-    const number = {}
+    const number = Array.from(Array(10).fill(0))
     const twinNumber = []
-
-    for(const num of X) {
-        number[num] = (number[num] || 0) + 1
+    
+    for(let i = 0; i < X.length; i++) {
+        number[X[i]] += 1
     }
     
-    for(const num of Y) {
-        if(number[num]) {
-            twinNumber.push(num)
-            number[num]--;
+    for(let j = 0; j < Y.length; j++) {
+        if(number[Y[j]] > 0) {
+            twinNumber.push(Y[j])
+            number[Y[j]] -= 1
         }
     }
-    
+
     answer = twinNumber.length > 0 ? twinNumber.sort((a, b) => b - a).join("") : '-1'
-  
-    if(answer.match(/[^0]/g) === null) answer = "0"
+    if(answer === '') answer = "-1"
+    else if(Number(answer) === 0) answer = "0"
     
     return answer;
 }

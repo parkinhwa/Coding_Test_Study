@@ -36,7 +36,6 @@ function solution(files) {
         }
         
         let tail = filecopy.replace(head+number, "")
-        // console.log(idx, head, number, tail)
         arr.push([idx, head, number, tail])
     })
     

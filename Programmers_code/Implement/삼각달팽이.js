@@ -1,39 +1,34 @@
-// 구현중..
 function solution(n) {
-    let sum = 0;
-    for(let i = 1; i <= n; i++) {
-        sum += i
+  const answer = [];
+  const arr = Array.from({ length: n }, (_, index) => Array(index + 1).fill(0));
+  let count = 0;
+  let x = -1;
+  let y = 0;
+  let sum = 0;
+
+  while (n > 0) {
+    for (let i = 0; i < n; i++) {    
+      x++;
+      count++;
+      arr[x][y] = count;
     }
-    const answer = Array.from(Array(sum).fill(0));
-    const array = Array.from({ length: n }, () => [])
-    
-    let count = 1;
-    let start = 0;
-    
-    while(true) {
-        if(count >= sum) return;
-        const end = n - start
-        console.log(start, end);
-        
-        for(let i = start; i < end; i++) {
-            array[i].push(count);
-            count++;
-        }
-
-        for(let k = 0; k < end-2; k++) {
-            array[end-1].push(count)
-            count++;
-        }
-
-        for(let j = end-1; j > start; j--) {
-            array[j].push(count);
-            count++;
-        }
-        start++;
-        console.log(array)
+    for (let i = 0; i < n-1; i++) {
+      y++;
+      count++;
+      arr[x][y] = count;
     }
-
-    console.log(array)
+    for (let i = 0; i < n-2; i++) {
+      x--;
+      y--;
+      count++;
+      arr[x][y] = count;
+    }
+    n -= 3
+  }
     
-    return answer;
+  for(let i = 0; i < arr.length; i++) {
+    answer.push(...arr[i])  
+  }
+
+  return answer;
 }
